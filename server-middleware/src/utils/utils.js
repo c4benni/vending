@@ -100,6 +100,7 @@ module.exports = {
   },
 
   getCookie: (cookie) => {
+    console.log(cookie)
     if (typeof cookie != 'string') {
       return {}
     }
