@@ -57,6 +57,7 @@
 <script>
 import deposit from '~/services/deposit'
 import { formatAmount } from '~/utils/main'
+
 export default {
   name: 'DepositPage',
   data: () => ({
@@ -95,24 +96,38 @@ export default {
 
       if (error) {
         return this.$commit('UPDATE', {
-          path: 'notify',
+          path: 'dashboardSnackbar',
           value: {
-            message: error.message || 'An error occured. Try again later',
+            title: error.message || 'An error occured. Try again later',
             error: true,
-            timeout: 3000,
-            key: Date.now()
+            attrs: {
+              timeout: 3000,
+              key: Date.now()
+            }
           }
         })
       }
 
       if (data) {
-        return this.$commit('UPDATE', {
-          path: 'notify',
+        this.$commit('UPDATE', {
+          path: 'dashboardSnackbar',
           value: {
-            message: data.message,
-            timeout: 3000,
-            key: Date.now()
+            attrs: {
+              timeout: 3000,
+              key: Date.now(),
+              top: true,
+              right: true
+            },
+            title: data.message
           }
+        })
+
+        await this.$nextTick()
+
+        this.$commit('UPDATE', {
+          path: 'value',
+          innerPath: 'dashboardSnackbar.attrs',
+          value: true
         })
       }
     }
