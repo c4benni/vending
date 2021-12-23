@@ -170,6 +170,29 @@ export default {
           value
         })
       }
+
+      Vue.prototype.$appProcessing = async (value) => {
+        !value &&
+          this.$commit('UPDATE', {
+            path: 'dashboardDialog',
+            value: {
+              attrs: {
+                persistent: true,
+                value: false,
+                contentClass: 'transparent shadow-none'
+              },
+              isLoading: true
+            }
+          })
+
+        await this.$nextTick()
+
+        this.$commit('UPDATE', {
+          innerPath: 'dashboardDialog.attrs',
+          path: 'value',
+          value
+        })
+      }
     },
 
     async onBeforeMount() {
@@ -184,6 +207,7 @@ export default {
 
         const { data, error } = res
 
+        console.log({ data })
         this.$commit('UPDATE', {
           path: 'user',
           value: !data
@@ -333,6 +357,7 @@ export default {
   height: 12px;
   border-radius: 2px / 3px;
   transform-origin: 2px 20px;
+  pointer-events: none;
 }
 .ldio-dy3y8kuse0b div:nth-child(1) {
   transform: rotate(0deg);
