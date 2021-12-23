@@ -82,6 +82,7 @@
       <div class="spinner-border" style="--size: 2rem" />
     </div>
 
+    <!-- onboard level snackbar -->
     <v-snackbar v-model="snackbar" :timeout="snackbarConfig.timeout" top right>
       {{ snackbarConfig.text }}
 
@@ -91,6 +92,7 @@
         </v-btn>
       </template>
     </v-snackbar>
+    <!--onboard level snackbar ends-->
   </v-app>
 </template>
 
