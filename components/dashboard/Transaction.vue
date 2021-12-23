@@ -34,7 +34,7 @@
             'opacity-60': disableWithdraw
           }"
           :title="isBuyer ? 'deposit coin(s)' : 'withdraw your income'"
-          :to="isBuyer ? `/dashboard/deposit` : '/dashboard'"
+          :to="isBuyer ? `/deposit` : '/'"
           :disabled="disableWithdraw"
         >
           <v-icon
@@ -49,7 +49,7 @@
           v-if="showResetButton"
           class="rounded-md px-5 h-[48px] gap-x-1 w-full opacity-80 hover:opacity-100 text-md error"
           title="reset coin"
-          to="/dashboard/reset-deposit"
+          to="/reset-deposit"
           tag="nuxt-link"
         >
           <v-icon class="mr-2" size="28px"> mdi-delete </v-icon>Reset coins
@@ -121,7 +121,8 @@
 
                 <div v-else class="opacity-80 text-[0.875rem]">
                   <nuxt-link
-                    :to="`/dashboard/shop?id=${transaction.productId}`"
+                    :to="`/shop?id=${transaction.productId}`"
+                    class="text-black dark:text-white"
                     >{{ transaction.productId }}</nuxt-link
                   >
                 </div>
@@ -147,10 +148,9 @@
                 <div
                   class="opacity-80 text-[0.875rem] py-4 px-6 whitespace-nowrap"
                 >
-                  <nuxt-link
-                    :to="`/dashboard/shop?id=${transaction.productId}`"
-                    >{{ transaction.productId || '--' }}</nuxt-link
-                  >
+                  <nuxt-link :to="`/shop?id=${transaction.productId}`">{{
+                    transaction.productId || '--'
+                  }}</nuxt-link>
                 </div>
               </td>
               <td>
