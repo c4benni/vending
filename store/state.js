@@ -26,17 +26,7 @@ export default function state() {
 
     greeting: '',
 
-    breakpoints: {},
-
-    mobileNav: false,
-
-    notify: { message: null },
-
     authSleeping: false,
-
-    dashboardProcessing: false,
-
-    processingDone: null,
 
     productName: null,
 
@@ -50,6 +40,10 @@ export default function state() {
 
     appMounted: false,
 
-    drawer: false
+    drawer: false,
+
+    dashboardSnackbar: {},
+
+    dashboardDialog: {}
   }
 }
