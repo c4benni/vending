@@ -1,7 +1,6 @@
-export default async function ({ store, redirect, route, req }) {
-  const app = store.$router.app
+export default async function ({ store, redirect, route, req, axios }) {
   // redirect if not logged in and path isnt / and app mounted
-  const appMounted = app?.$ui?.mounted
+  const appMounted = store.state.appMounted
 
   if (req) {
     const scheme = req.connection.encrypted ? 'https://' : 'http://'
@@ -12,7 +11,9 @@ export default async function ({ store, redirect, route, req }) {
       headers: req.headers
     })
 
-    const { data } = await res.json()
+    const resp = await res.json()
+
+    const { data } = resp
 
     store.commit('UPDATE', {
       path: 'user',
@@ -27,7 +28,7 @@ export default async function ({ store, redirect, route, req }) {
   const session = store.state.user
   const loginPage = route.path == '/'
 
-  // redirect to homescreen if not logged in;
+  // redirect to login if not logged in;
   if (!session && !loginPage) {
     return redirect({
       path: '/',
@@ -37,24 +38,19 @@ export default async function ({ store, redirect, route, req }) {
     })
   }
 
-  // redirect back to dashboard if a logged in user is trying to access login page
-  if (session && loginPage) {
-    return redirect('/dashboard')
-  }
-
   const redirectUnauthorized = (role, paths) => {
     // redirect to 404 when user is accesses wrong routes;
     if (session?.role == role) {
       const unauthorized = paths
 
       const isUnauthorized = unauthorized.find((x) => {
-        const regExp = new RegExp(`^/dashboard/${x}/?`)
+        const regExp = new RegExp(`^/${x}/?`)
 
         return regExp.test(route.path)
       })
 
       if (isUnauthorized) {
-        return redirect('/dashboard/unauthorized')
+        return redirect('/unauthorized')
       }
     }
   }
@@ -63,10 +59,10 @@ export default async function ({ store, redirect, route, req }) {
   redirectUnauthorized('seller', ['deposit', 'reset', 'shop', 'shop?id=.+'])
 
   if (
-    route.path == '/dashboard/create-product' &&
+    route.path == '/create-product' &&
     store.state.dashboardProcessing &&
     !store.state.processingDone
   ) {
-    return redirect('/dashboard/create-product')
+    return redirect('/create-product')
   }
 }
