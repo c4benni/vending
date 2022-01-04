@@ -1,7 +1,10 @@
 {
   "name": "vending",
+  "description": "a vending app with buyer and seller roles",
   "version": "1.0.0",
-  "private": true,
+  "engines": {
+    "node": "16.11.x"
+  },
   "scripts": {
     "dev": "nuxt",
     "build": "nuxt build",
@@ -10,7 +13,8 @@
     "lint:js": "eslint --ext \".js,.vue\" --ignore-path .gitignore .",
     "lint:style": "stylelint \"**/*.{vue,css}\" --ignore-path .gitignore",
     "lint": "npm run lint:js && npm run lint:style",
-    "test": "jest index.test"
+    "test": "jest index.test",
+    "heroku-postbuild": "npm run build"
   },
   "eslintConfig": {
     "rules": {
