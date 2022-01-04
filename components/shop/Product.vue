@@ -86,7 +86,8 @@
         <v-btn
           v-if="showDeposit"
           class="min-w-[200px] h-[48px] mx-auto grid w-[min(70%,300px)] text-blue-800 dark:text-blue-500 fade-appear hover:underline font-medium mt-6 ring-1"
-          to="/dashboard/deposit"
+to="/deposit"
+
           >Deposit coins</v-btn
         >
       </div>

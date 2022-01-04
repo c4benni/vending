@@ -175,7 +175,8 @@ export default {
       const route = this.$route
 
       const match = (path) => {
-        const regExp = new RegExp(`^/dashboard/${path}/?`)
+const regExp = new RegExp(`^/${path}/?`)
+
 
         return regExp.test(route.path)
       }
@@ -183,7 +184,8 @@ export default {
       return [
         {
           title: 'Overview',
-          isActive: /^\/dashboard\/?$/.test(route.path),
+isActive: /^\/?$/.test(route.path),
+
           icon: 'home',
           to: '/'
         },

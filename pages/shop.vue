@@ -29,7 +29,8 @@
       v-for="(product, i) in products"
       :key="i"
       v-ripple
-      :to="`/dashboard/shop?id=${product.id}`"
+:to="`/shop?id=${product.id}`"
+
       class="grid-flow-row text-left bg-white dark:bg-blue-gray-900 dark:bg-opacity-50 w-full p-0 justify-stretch transform-gpu rounded-md transition-transform hover:translate-y-[-0.25rem] hover:shadow-lg ring-1 ring-opacity-10 ring-black dark:ring-white dark:ring-opacity-10 text-black dark:text-white"
       outlined
       :outlined-storke="`${$theme.light ? '0.75px' : '0.5px'}`"

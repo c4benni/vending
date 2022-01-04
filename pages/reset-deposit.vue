@@ -57,7 +57,8 @@ export default {
         ? [
             {
               title: 'Cancel',
-              to: '/dashboard'
+to: '/'
+
             },
             {
               title: 'Reset deposit'
@@ -66,7 +67,8 @@ export default {
         : [
             {
               title: 'Deposit coins',
-              to: '/dashboard/deposit'
+to: '/deposit'
+
             }
           ]
     }
@@ -96,7 +98,8 @@ export default {
 
             await this.$nextTick()
 
-            this.$router.push('/dashboard')
+this.$router.push('/')
+
           },
           key: Date.now()
         }

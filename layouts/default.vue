@@ -94,7 +94,8 @@ export default {
     },
 
     async $route(n, o) {
-      if (n.path == '/dashboard/account') {
+if (n.path == '/account') {
+
         await this.$sleep(70)
         scrollTo(0, 0)
       } else {
@@ -289,14 +290,14 @@ export default {
       const session = this.user
       const path = this.$route.path
 
-      // redirect back to dashboard if a logged in user is trying to access login page
-      if (session && path == '/') {
-        this.$router.replace('/dashboard')
-      }
+/** * redirect back to dashboard if a logged in user is trying to access login
+page * * if (session && path == '/') { this.$router.replace('/dashboard') } add
+else below if u decide to uncomment if above ***/
+
 
       // redirect back to login if a logged out user is trying to access dashboard
-      else if (!session && path != '/') {
-        return this.$router.replace('/')
+if (!session && path != '/') { return this.$router.replace('/?login=true')
+
       }
     },
 
