@@ -1,5 +1,5 @@
 {
-  "name": "vending",
+  "name": "vending-io",
   "description": "a vending app with buyer and seller roles",
   "version": "1.0.0",
   "engines": {
