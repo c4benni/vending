@@ -6,16 +6,37 @@ const { Sequelize, DataTypes } = require('sequelize')
 
 const { db: dbConfig } = require('../config/config')
 
+const { isProduction } = require('../../../utils/main')
+
 // database instance
 const DB = {}
 
+let sequelize
+
 // new Sequelize instance
-const sequelize = new Sequelize(
-  dbConfig.database,
-  dbConfig.user,
-  dbConfig.password,
-  dbConfig.options
-)
+if (isProduction) {
+  const ssl = {
+    required: true,
+    rejectUnauthorized: false
+  }
+
+  sequelize = new Sequelize(process.env.DATABASE_URL, {
+    dialect: 'postgres',
+    protocol: 'postgres',
+    dialectOptions: {
+      ssl
+    },
+    ssl
+  })
+} else {
+  sequelize = new Sequelize(
+    dbConfig.database,
+    dbConfig.user,
+    dbConfig.password,
+    dbConfig.options
+  )
+}
+
 
 // auto import models and add them to DB{}
 fs.readdirSync(__dirname)
