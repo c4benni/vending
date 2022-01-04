@@ -1,11 +1,13 @@
 import colors from 'vuetify/es5/util/colors'
+import { isProduction } from './utils/main'
+
 
 const description =
   'Discover your favourite recipes from different parts of the world!'
 
 export default {
   // Target: https://go.nuxtjs.dev/config-target
-  target: 'static',
+  target: 'server',
 
   env: {},
 
@@ -97,7 +99,7 @@ export default {
     prefix: '',
     retry: true,
     credentials: true,
-    debug: true,
+    debug: !isProduction,
     headers: {
       Accept: 'application/json',
       'Access-Control-Allow-Origin': '*',
