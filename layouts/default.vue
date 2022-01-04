@@ -88,7 +88,8 @@ export default {
     'theme.isDark'(n) {
       const currentTheme = !n ? 'dark' : 'light'
       const newTheme = n ? 'dark' : 'light'
-      console.log({ currentTheme, newTheme })
+// console.log({ currentTheme, newTheme })
+
       document.documentElement.classList.replace(currentTheme, newTheme)
     },
 
@@ -207,7 +208,8 @@ export default {
 
         const { data, error } = res
 
-        console.log({ data })
+// console.log({ data })
+
         this.$commit('UPDATE', {
           path: 'user',
           value: !data

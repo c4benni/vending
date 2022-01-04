@@ -303,7 +303,8 @@ export default {
             return
           }
 
-          console.log(data)
+// console.log(data)
+
 
           this.$commit('UPDATE', {
             path: 'user',
